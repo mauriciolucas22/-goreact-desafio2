@@ -7,9 +7,7 @@ import RepoItem from '../../components/RepoList/components/RepoItem';
 
 const IssuesList = ({ issues, loading, repo }) => (
   <Container>
-    <Header>
-      { repo && <RepoItem repo={repo} /> }
-    </Header>
+    <Header />
     { issues.map(i => <IssueItem key={i.id} issue={i} />) }
   </Container>
 );

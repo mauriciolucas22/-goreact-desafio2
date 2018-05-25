@@ -6,7 +6,7 @@ const IssueItem = ({ issue }) => (
   <Container>
     <img src={issue.user.avatar_url} alt={issue.user.login} />
     <Content>
-      <strong>{issue.title}</strong>
+      <strong>{issue.title.slice(0, 20)}...</strong>
       <small>{issue.user.login}</small>
       <a href={issue.html_url} target="_blank">Abrir issue</a>
     </Content>

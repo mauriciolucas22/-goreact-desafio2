@@ -33,7 +33,6 @@ export default class Main extends Component {
         issuesError: false,
         repo,
       });
-
     } catch (err) {
       this.setState({ issuesError: true });
     } finally {
@@ -59,6 +58,7 @@ export default class Main extends Component {
             name,
             login,
             avatar_url,
+            issues: [],
           },
         ],
         repositoryError: false,
@@ -89,7 +89,11 @@ export default class Main extends Component {
           <RepoList repositories={this.state.repositories} getIssues={this.getIssues} />
         </SideBar>
 
-        <IssuesList repo={this.state.repo} issues={this.state.issues} loading={this.state.loadingIssues} />
+        <IssuesList
+          repo={this.state.repo}
+          issues={this.state.issues}
+          loading={this.state.loadingIssues}
+        />
       </Container>
     );
   }

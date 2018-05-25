@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-left: 320px;
+  width: 100%;
 `;
 
 export const Header = styled.div`
