@@ -18,7 +18,6 @@ export default class Main extends Component {
     currentRepoID: null,
     currentRepoOBJ: null,
     loadingIssues: false,
-    issuesError: false,
   };
 
   getIssues = async (e, state, id) => {
@@ -34,13 +33,12 @@ export default class Main extends Component {
       const { data: issues } = await api.get(`/repos/${repoCurrent.login}/${repoCurrent.name}/issues?state=${state}`);
 
       // get index do repo dessas issues
-      const indexRepo = this.state.repositories.findIndex(r => r.id === id);
+      // const indexRepo = this.state.repositories.findIndex(r => r.id === id);
       // const { repositories } = this.state; // get repositories do state
       // repositories[indexRepo].issues = issues; // add issues ao repo
 
       this.setState({
         issues,
-        issuesError: false,
         currentRepoID: repoCurrent.id,
         currentRepoOBJ: repoCurrent,
       });

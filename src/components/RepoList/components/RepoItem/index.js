@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, Content, Avatar } from './styles';
 
@@ -16,5 +17,14 @@ const RepoItem = ({ repo, getIssues }) => (
     </button>
   </Container>
 );
+
+RepoItem.propTypes = {
+  repo: PropTypes.shape({
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+    login: PropTypes.string,
+  }).isRequired,
+  getIssues: PropTypes.func.isRequired,
+};
 
 export default RepoItem;

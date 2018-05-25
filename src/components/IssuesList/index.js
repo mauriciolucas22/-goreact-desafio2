@@ -14,12 +14,13 @@ class IssuesList extends React.Component {
       login: PropTypes.string,
       name: PropTypes.string,
       avatar_url: PropTypes.string,
-    }).isRequired,
+    }),
     getIssues: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     currentRepoID: null,
+    currentRepoOBJ: null,
   }
 
   handleChange = (event) => {
