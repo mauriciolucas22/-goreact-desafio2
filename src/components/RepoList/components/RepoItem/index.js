@@ -1,14 +1,19 @@
 import React from 'react';
 
-import { Container, infoContainer } from './styles';
+import { Container, Content, Avatar } from './styles';
 
-const RepoItem = ({ repo }) => (
+const RepoItem = ({ repo, getIssues }) => (
   <Container>
-    <img src={repo.owner.avatar_url} alt={repo.owner.login} />
-    <infoContainer>
+    <Avatar>
+      <img src={repo.avatar_url} alt={repo.login} />
+    </Avatar>
+    <Content>
       <strong>{repo.name}</strong>
-      <small>{repo.owner.login}</small>
-    </infoContainer>
+      <small>{repo.login}</small>
+    </Content>
+    <button onClick={(e) => { getIssues(e, `${repo.login}/${repo.name}`, 'open'); }} >
+      <i className="fa fa-chevron-right" />
+    </button>
   </Container>
 );
 

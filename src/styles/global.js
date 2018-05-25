@@ -7,6 +7,8 @@ injectGlobal`
     padding: 0;
     box-sizing: border-box;
     outline: 0;
+    height: 100%;
+    width: 100%;
   }
 
   body {
@@ -14,7 +16,5 @@ injectGlobal`
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     font-family: sans-serif;
-    height: 100%;
-    width: 100%;
   }
 `;

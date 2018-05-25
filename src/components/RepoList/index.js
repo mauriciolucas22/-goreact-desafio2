@@ -6,9 +6,10 @@ import { Container } from './styles';
 // components
 import RepoItem from './components/RepoItem';
 
-const RepoList = ({ repositories }) => (
+
+const RepoList = ({ repositories, getIssues }) => (
   <Container>
-    { repositories.map(repo => <RepoItem repo={repo} />) }
+    { repositories.map(repo => <RepoItem key={repo.id} repo={repo} getIssues={getIssues} />) }
   </Container>
 );
 
