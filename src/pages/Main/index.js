@@ -15,23 +15,33 @@ export default class Main extends Component {
     repositoryError: false,
     loading: false,
     issues: [],
+    currentRepo: null,
     loadingIssues: false,
     issuesError: false,
-    repo: '',
   };
 
-  getIssues = async (e, repo, state) => {
+  getIssues = async (e, repo, state, id) => {
     e.preventDefault();
-
+    let repoCurrent = '';
     this.setState({ loadingIssues: true });
 
+    if (this.state.repositories) {
+      repoCurrent = this.state.repositories.find(r => r.id === id);
+    }
+
     try {
-      const { data: issues } = await api.get(`/repos/${repo}/issues?state=${state}`);
+      const { data: issues } = await api.get(`/repos/${repoCurrent.login}/${repoCurrent.name}/issues?state=${state}`);
+
+      // get index do repo dessas issues
+      const indexRepo = this.state.repositories.findIndex(r => r.id === id);
+      const { repositories } = this.state; // get repositories do state
+      repositories[indexRepo].issues = issues; // add issues ao repo
 
       this.setState({
-        issues,
+        issues, // deixzara de ser usado
         issuesError: false,
-        repo,
+        repositories,
+        currentRepo: repositories[indexRepo],
       });
     } catch (err) {
       this.setState({ issuesError: true });
@@ -90,9 +100,11 @@ export default class Main extends Component {
         </SideBar>
 
         <IssuesList
-          repo={this.state.repo}
-          issues={this.state.issues}
+          issues={this.state.issues} // deixara
+          currentRepo={this.state.currentRepo}
+          repositories={this.state.repositories}
           loading={this.state.loadingIssues}
+          getIssues={this.getIssues}
         />
       </Container>
     );
