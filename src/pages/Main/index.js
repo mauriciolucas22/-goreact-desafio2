@@ -25,11 +25,13 @@ export default class Main extends Component {
     let repoCurrent = '';
     this.setState({ loadingIssues: true });
 
-    if (this.state.repositories) {
-      repoCurrent = this.state.repositories.find(r => r.id === id);
-    }
-
     try {
+      repoCurrent = this.state.repositories.find(r => r.id === id);
+      if (!repoCurrent) {
+        console.log('nao existe');
+        return;
+      }
+
       const { data: issues } = await api.get(`/repos/${repoCurrent.login}/${repoCurrent.name}/issues?state=${state}`);
 
       // get index do repo dessas issues
@@ -41,10 +43,11 @@ export default class Main extends Component {
         issues, // deixzara de ser usado
         issuesError: false,
         repositories,
-        currentRepo: repositories[indexRepo],
+        currentRepo: repositories[indexRepo].id,
       });
     } catch (err) {
       this.setState({ issuesError: true });
+      console.log(err);
     } finally {
       this.setState({ loadingIssues: false });
     }
@@ -100,9 +103,8 @@ export default class Main extends Component {
         </SideBar>
 
         <IssuesList
-          issues={this.state.issues} // deixara
+          issues={this.state.issues}
           currentRepo={this.state.currentRepo}
-          repositories={this.state.repositories}
           loading={this.state.loadingIssues}
           getIssues={this.getIssues}
         />
