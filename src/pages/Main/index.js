@@ -10,7 +10,7 @@ import IssuesList from '../../components/IssuesList';
 
 export default class Main extends Component {
   state = {
-    repositoryInput: 'facebook/react',
+    repositoryInput: '',
     repositories: [],
     repositoryError: false,
     loading: false,
