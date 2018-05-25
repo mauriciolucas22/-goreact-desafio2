@@ -20,7 +20,7 @@ export default class Main extends Component {
     issuesError: false,
   };
 
-  getIssues = async (e, repo, state, id) => {
+  getIssues = async (e, state, id) => {
     e.preventDefault();
     let repoCurrent = '';
     this.setState({ loadingIssues: true });

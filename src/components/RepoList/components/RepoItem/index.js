@@ -11,7 +11,7 @@ const RepoItem = ({ repo, getIssues }) => (
       <strong>{repo.name}</strong>
       <small>{repo.login}</small>
     </Content>
-    <button onClick={(e) => { getIssues(e, `${repo.login}/${repo.name}`, 'open', repo.id); }} >
+    <button onClick={(e) => { getIssues(e, 'open', repo.id); }} >
       <i className="fa fa-chevron-right" />
     </button>
   </Container>
