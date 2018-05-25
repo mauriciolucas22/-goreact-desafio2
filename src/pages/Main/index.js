@@ -15,7 +15,8 @@ export default class Main extends Component {
     repositoryError: false,
     loading: false,
     issues: [],
-    currentRepo: null,
+    currentRepoID: null,
+    currentRepoOBJ: null,
     loadingIssues: false,
     issuesError: false,
   };
@@ -27,10 +28,6 @@ export default class Main extends Component {
 
     try {
       repoCurrent = this.state.repositories.find(r => r.id === id);
-      if (!repoCurrent) {
-        console.log('nao existe');
-        return;
-      }
 
       const { data: issues } = await api.get(`/repos/${repoCurrent.login}/${repoCurrent.name}/issues?state=${state}`);
 
@@ -43,11 +40,11 @@ export default class Main extends Component {
         issues, // deixzara de ser usado
         issuesError: false,
         repositories,
-        currentRepo: repositories[indexRepo].id,
+        currentRepoID: repositories[indexRepo].id,
+        currentRepoOBJ: repoCurrent,
       });
     } catch (err) {
       this.setState({ issuesError: true });
-      console.log(err);
     } finally {
       this.setState({ loadingIssues: false });
     }
@@ -104,7 +101,8 @@ export default class Main extends Component {
 
         <IssuesList
           issues={this.state.issues}
-          currentRepo={this.state.currentRepo}
+          currentRepoID={this.state.currentRepoID}
+          currentRepoOBJ={this.state.currentRepoOBJ}
           loading={this.state.loadingIssues}
           getIssues={this.getIssues}
         />

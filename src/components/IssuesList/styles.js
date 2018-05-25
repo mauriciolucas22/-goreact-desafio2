@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// flex-wrap: quebra de linha
+
 export const Container = styled.div`
   margin-left: 320px;
   width: 100%;
@@ -15,6 +17,10 @@ export const Container = styled.div`
   }
 `;
 
+export const Description = styled.div`
+  margin-left: 100px;
+`;
+
 export const Header = styled.div`
   width: 100%;
   height: 100px;
@@ -26,6 +32,5 @@ export const Header = styled.div`
 export const List = styled.div`
   display: flex;
   flex-direction: 'row';
-  justify-content: 'flex-end';
-  flex-wrap: wrap,
+  flex-wrap: wrap;
 `;
