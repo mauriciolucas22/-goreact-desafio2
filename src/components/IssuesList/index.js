@@ -1,10 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, Header, List, Description, Avatar, Content, Repo } from './styles';
 
 import IssueItem from './components/IssueItem';
 
 class IssuesList extends React.Component {
+  static propTypes = {
+    issues: PropTypes.arrayOf(PropTypes.shape).isRequired,
+    loading: PropTypes.bool.isRequired,
+    currentRepoID: PropTypes.number,
+    currentRepoOBJ: PropTypes.shape({
+      login: PropTypes.string,
+      name: PropTypes.string,
+      avatar_url: PropTypes.string,
+    }).isRequired,
+    getIssues: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    currentRepoID: null,
+  }
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
