@@ -90,7 +90,7 @@ export default class Main extends Component {
               onChange={e => this.setState({ repositoryInput: e.target.value })}
             />
             <button type="submit">
-              { this.state.loading ? <i className="fa fa-spinner fa-pulse" /> : 'OK' }
+              { this.state.loading ? <i className="fa fa-spinner fa-pulse" /> : <i className="fa fa-plus-circle" /> }
             </button>
           </Form>
 
