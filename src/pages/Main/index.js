@@ -27,20 +27,21 @@ export default class Main extends Component {
     this.setState({ loadingIssues: true });
 
     try {
+      // pega o repo que foi selecionado
       repoCurrent = this.state.repositories.find(r => r.id === id);
 
+      // faz request
       const { data: issues } = await api.get(`/repos/${repoCurrent.login}/${repoCurrent.name}/issues?state=${state}`);
 
       // get index do repo dessas issues
       const indexRepo = this.state.repositories.findIndex(r => r.id === id);
-      const { repositories } = this.state; // get repositories do state
-      repositories[indexRepo].issues = issues; // add issues ao repo
+      // const { repositories } = this.state; // get repositories do state
+      // repositories[indexRepo].issues = issues; // add issues ao repo
 
       this.setState({
-        issues, // deixzara de ser usado
+        issues,
         issuesError: false,
-        repositories,
-        currentRepoID: repositories[indexRepo].id,
+        currentRepoID: repoCurrent.id,
         currentRepoOBJ: repoCurrent,
       });
     } catch (err) {
@@ -68,7 +69,6 @@ export default class Main extends Component {
             name,
             login,
             avatar_url,
-            issues: [],
           },
         ],
         repositoryError: false,

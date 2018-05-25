@@ -34,3 +34,21 @@ export const List = styled.div`
   flex-direction: 'row';
   flex-wrap: wrap;
 `;
+
+export const Repo = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Avatar = styled.div`
+  img {
+    height: 48px;
+    width: 48px;
+  }
+`;
+
+export const Content = styled.div`
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+`;

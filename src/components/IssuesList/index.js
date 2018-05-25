@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Header, List, Description } from './styles';
+import { Container, Header, List, Description, Avatar, Content, Repo } from './styles';
 
 import IssueItem from './components/IssueItem';
 
@@ -19,7 +19,15 @@ class IssuesList extends React.Component {
         <Header>
           {currentRepoID && (
             <Description>
-              <div>{currentRepoOBJ.login}</div>
+              <Repo>
+                <Avatar>
+                  <img src={currentRepoOBJ.avatar_url} alt={currentRepoOBJ.login} />
+                </Avatar>
+                <Content>
+                  <strong>{currentRepoOBJ.name}</strong>
+                  <small>{currentRepoOBJ.login}</small>
+                </Content>
+              </Repo>
               <select onChange={(e) => { getIssues(e, e.target.value, currentRepoID); }}>
                 <option value="all">Todas</option>
                 <option value="open">Abertas</option>
